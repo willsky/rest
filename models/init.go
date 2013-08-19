@@ -14,7 +14,7 @@ var (
 func init() {
 
     if "dev" == beego.RunMode {
-        orm.Debug = true 
+        orm.Debug = true
     }
 
     dns := fmt.Sprintf("%s:%s@%s(%s:%s)/%s?charset=%s",

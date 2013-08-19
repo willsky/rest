@@ -30,7 +30,6 @@ func (this *Article) Get() {
     }
 
     err = article.Read(int(id))
-    fmt.Println(err)
 
     if nil != err {
         this.jsonResponse(404)
