@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"rest/models"
+    "fmt"
 )
 
 type Article struct {
@@ -15,31 +16,28 @@ func (this *Article) Post() {
     article.Keywords = "test"
     article.Content = "test test"
     article.Insert()
-    this.Data["json"] = make(map[string]int, 1)
-    this.ServeJson()
+    this.jsonResponse(0, make(map[string]int))
 }
 
 func (this *Article) Get() {
     article := new(models.EnterArticles)
-    var retval *models.BaseJson = &models.BaseJson{Code: 404, Msg: "Not Found", Data: make(map[string]Object)}
     id, err := this.GetInt("id")
 
-    {
-
-        if (nil != err) {
-            id = 0
-            goto end
-        }
-
-        err = article.Read(int(id))
-
-        if nil == err {
-            retval.Data = article
-        }
+    if (nil != err) {
+        id = 0
+        this.jsonResponse(601)
+        return
     }
 
-    end:
-    this.json(retval)
+    err = article.Read(int(id))
+    fmt.Println(err)
+
+    if nil != err {
+        this.jsonResponse(404)
+        return
+    }
+
+    this.jsonResponse(0, article)
 }
 
 

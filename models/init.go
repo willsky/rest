@@ -1,8 +1,10 @@
 package models
 
 import (
+    "github.com/astaxie/beego"
     "github.com/astaxie/beego/orm"
     _ "github.com/go-sql-driver/mysql"
+    "fmt"
 )
 
 var (
@@ -10,8 +12,22 @@ var (
 )
 
 func init() {
-    orm.Debug = true
-    orm.RegisterDataBase("default", "mysql", "root:123456@tcp(localhost:3306)/enterprise_site?charset=utf8", 10)
+
+    if "dev" == beego.RunMode {
+        orm.Debug = true 
+    }
+
+    dns := fmt.Sprintf("%s:%s@%s(%s:%s)/%s?charset=%s",
+    beego.AppConfig.String("defaultmysqluser"),
+    beego.AppConfig.String("defaultmysqlpasswd"),
+    beego.AppConfig.String("dbprotocol"),
+    beego.AppConfig.String("defaultmysqlhost"),
+    beego.AppConfig.String("defaultmysqlport"),
+    beego.AppConfig.String("defaultmysqldatbase"),
+    beego.AppConfig.String("dbcharset"))
+
+    defaultMaxIdle, _ := beego.AppConfig.Int("defaultmysqlmaxidle")
+    orm.RegisterDataBase("default", "mysql", dns, defaultMaxIdle)
     DefaultOrm = orm.NewOrm()
 }
 
