@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"rest/models"
-    "fmt"
 )
 
 type Article struct {
