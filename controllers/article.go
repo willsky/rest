@@ -23,7 +23,6 @@ func (this *Article) Get() {
     article := new(models.EnterArticles)
     var retval *models.BaseJson = &models.BaseJson{Code: 404, Msg: "Not Found", Data: make(map[string]Object)}
     id, err := this.GetInt("id")
-    
 
     {
 
@@ -33,11 +32,10 @@ func (this *Article) Get() {
         }
 
         err = article.Read(int(id))
-        
 
         if nil == err {
             retval.Data = article
-        }        
+        }
     }
 
     end:
