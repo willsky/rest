@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"rest/models"
+    "rest/models"
 )
 
 type Article struct {

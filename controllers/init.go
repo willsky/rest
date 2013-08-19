@@ -16,7 +16,7 @@ func (this *BaseController) json(v Object){
     this.ServeJson(true)
 }
 
-func (this *BaseController) jsonResponse(status int, v ... interface{}) {
+func (this *BaseController) jsonResponse(status int, v ... Object) {
     var (
         data *models.BaseJson = new(models.BaseJson)
         message string
