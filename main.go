@@ -3,6 +3,8 @@ package main
 import (
 	"github.com/astaxie/beego"
 	"rest/controllers"
+    "github.com/astaxie/beego/orm"
+    _ "github.com/go-sql-driver/mysql"
 )
 
 //		Objects
@@ -17,4 +19,8 @@ import (
 func main() {
 	beego.RESTRouter("/article", &controllers.Article{})
 	beego.Run()
+}
+
+func init() {
+    orm.RunCommand()
 }

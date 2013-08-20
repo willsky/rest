@@ -28,7 +28,7 @@ func (this *Article) Get() {
         return
     }
 
-    err = article.Read(int(id))
+    err = article.Read(id)
 
     if nil != err {
         this.jsonResponse(404)
