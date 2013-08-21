@@ -57,9 +57,12 @@ func (this *Article) Get() {
 
         query["offset"] = offset
         query["limit"] = limit
-        articles, err = article.GetList(query)
-        this.jsonResponse(0, articles)
-        return
+
+        if articles, err = article.GetList(query); nil == err && len(articles) > 0 {
+            this.jsonResponse(0, articles)
+        } else {
+            this.jsonResponse(404, make([]int, 0))
+        }
     } else {
         err = article.Read(id)
 
