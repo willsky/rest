@@ -4,7 +4,6 @@ import (
     "rest/models"
     "libs"
     "strconv"
-    "fmt"
 )
 
 type Article struct {
@@ -18,7 +17,6 @@ func (this *Article) Post() {
     article.Content = this.GetString("content")
 
     if uid, err := this.GetInt("uid"); nil == err && uid > 0 {
-        fmt.Println(uid)
         article.Uid = uid
     } else {
         this.jsonResponse(601)
