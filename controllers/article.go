@@ -45,6 +45,7 @@ func (this *Article) Get() {
             offset int64 = 0
             limit int = 10
         )
+
         query := make(map[string]libs.Object)
 
         if v, err := this.GetInt("offset"); nil == err {
@@ -58,7 +59,7 @@ func (this *Article) Get() {
         query["offset"] = offset
         query["limit"] = limit
 
-        if articles, err = article.GetList(query); nil == err && len(articles) > 0 {
+        if articles, err = article.GetList(query); nil == err {
             this.jsonResponse(0, articles)
         } else {
             this.jsonResponse(404, make([]int, 0))

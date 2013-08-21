@@ -68,6 +68,7 @@ func (this *EnterArticles) GetList(query map[string]libs.Object) (articles []*En
             limit = 10
         }
     }
+    articles = make([]*EnterArticles, 0)
     _, err = DefaultOrm.QueryTable(this).OrderBy("-id").Offset(offset).Limit(limit).All(&articles)
     return
 }
