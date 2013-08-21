@@ -3,20 +3,19 @@ package controllers
 import (
     "github.com/astaxie/beego"
     "rest/models"
+    "rest/libs"
 )
-
-type Object interface{}
 
 type BaseController struct{
     beego.Controller
 }
 
-func (this *BaseController) json(v Object){
+func (this *BaseController) json(v libs.Object){
     this.Data["json"] = v
     this.ServeJson(true)
 }
 
-func (this *BaseController) jsonResponse(status int, v ... Object) {
+func (this *BaseController) jsonResponse(status int, v ... libs.Object) {
     var (
         data *models.BaseJson = new(models.BaseJson)
         message string

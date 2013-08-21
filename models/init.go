@@ -5,6 +5,7 @@ import (
     "github.com/astaxie/beego/orm"
     _ "github.com/go-sql-driver/mysql"
     "fmt"
+    "rest/libs"
 )
 
 var (
@@ -35,7 +36,6 @@ func init() {
 type BaseJson struct {
 	Code int `json:"errcode"`
 	Msg string `json:"msg"`
-	Data Model `json:"data"`
+	Data libs.Object `json:"data"`
 }
 
-type Model interface {}
