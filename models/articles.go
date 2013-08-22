@@ -4,7 +4,7 @@ import (
     "github.com/astaxie/beego/orm"
     _ "github.com/go-sql-driver/mysql"
     "time"
-    "libs"
+    "rest/libs"
 )
 
 type EnterArticles struct {

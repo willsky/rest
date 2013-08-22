@@ -2,7 +2,7 @@ package controllers
 
 import (
     "rest/models"
-    "libs"
+    "rest/libs"
     "strconv"
 )
 
